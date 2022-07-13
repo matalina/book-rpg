@@ -1,5 +1,5 @@
 import { Character } from "./character";
-import { Weapon } from "./weapon";
+import type { Weapon } from "./weapon";
 
 export class Enemy extends Character {
   challengeLevel: number;
