@@ -1,0 +1,24 @@
+{
+  "name": "book-rpg",
+  "version": "1.0.0",
+  "description": "Character Name: YOU",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matalina/book-rpg.git"
+  },
+  "author": "Alicia Wilkerson <alicia@akddev.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matalina/book-rpg/issues"
+  },
+  "homepage": "https://github.com/matalina/book-rpg#readme",
+  "devDependencies": {
+    "i": "^0.3.7",
+    "typescript": "^4.7.4",
+    "typescriptnpm": "^1.0.1"
+  }
+}
