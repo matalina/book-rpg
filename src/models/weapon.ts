@@ -14,7 +14,9 @@ export class Weapon extends Item {
   }
 
   damage(mod = 0) {
-    return this.#dice.roll(this.count).total() + this.modifier + mod;
+    const damage = this.#dice.roll(this.count).total() + this.modifier + mod;
+    if (damage < 0) return 0;
+    return damage;
   }
 
   getDamageLog() {
