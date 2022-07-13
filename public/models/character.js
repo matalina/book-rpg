@@ -1,23 +1,26 @@
 "use strict";
+var __classPrivateFieldGet = (this && this.__classPrivateFieldGet) || function (receiver, state, kind, f) {
+    if (kind === "a" && !f) throw new TypeError("Private accessor was defined without a getter");
+    if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver)) throw new TypeError("Cannot read private member from an object whose class did not declare it");
+    return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+};
+var _Character_dice;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Character = void 0;
-const backpack_1 = require("./backpack");
-const credits_1 = require("./credits");
+const dice_1 = require("./dice");
 class Character {
-    constructor(name, cl, hp, sk, creds) {
+    constructor(name, cl, hp) {
+        _Character_dice.set(this, new dice_1.Dice());
         this.name = name;
-        this.challengeLevel = cl + 10;
-        this.healthPoints = hp + 20;
-        this.skills = sk;
-        this.credits = new credits_1.Credits(creds * 100);
-        this.backpack = new backpack_1.Backpack(8);
-        return this;
+        this.challengeLevel = cl;
+        this.hitPoints = hp;
     }
-    combat(enemy) {
-        return enemy;
+    roll(mod = 0) {
+        return __classPrivateFieldGet(this, _Character_dice, "f").roll(this.challengeLevel + mod).wins();
     }
-    challenge(npc) {
-        return npc;
+    getDiceLogs() {
+        return __classPrivateFieldGet(this, _Character_dice, "f").rollLog.get();
     }
 }
 exports.Character = Character;
+_Character_dice = new WeakMap();

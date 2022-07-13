@@ -1,47 +1,23 @@
-import { calculateCombatRatio } from "../helpers";
-import { Backpack } from "./backpack";
-import { Credits} from "./credits";
-import { Npc } from "./npc";
-import { Skill } from "./skill";
+import { Dice } from "./dice";
 
 export class Character {
-  challengeLevel: number;
-  healthPoints: number;
-  credits: Credits;
-  backpack: Backpack;
-  skills: Skill[];
   name: string;
+  challengeLevel: number;
+  hitPoints: number;
 
-  constructor(name: string, cl: number, hp: number, sk: Skill[], creds: number) {
+  #dice = new Dice();
+
+  constructor(name: string, cl: number, hp: number) {
     this.name = name;
-    this.challengeLevel = cl + 10;
-    this.healthPoints = hp + 20;
-    this.skills = sk;
-    this.credits = new Credits(creds * 100);
-    this.backpack = new Backpack(8);
-
-    return this;
+    this.challengeLevel = cl;
+    this.hitPoints = hp;
   }
 
-  hasSkill(name: string): boolean {
-    for(let i in this.skills) {
-      if(this.skills[i].name === name) {
-        return true;
-      }
-    }
-    return false;
+  roll(mod = 0) {
+    return this.#dice.roll(this.challengeLevel + mod).wins();
   }
 
-  #calculateChallengeLevel() {
-    return this.challengeLevel;
-  }
-
-  takeDamage(opponent: number, roll:number) {
-    const ratio = calculateCombatRatio(this.#calculateChallengeLevel(), opponent);
-    const damage = roll - ratio;
-    if (damage >= 0) return;
-    this.healthPoints -= damage;
-
-    return this;
+  getDiceLogs() {
+    return this.#dice.rollLog.get();
   }
 }

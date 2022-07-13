@@ -1,14 +1,8 @@
-import { Character } from "./models/character";
-import { DiceRoll } from './models/dice';
-import { Skill } from "./models/skill";
+import { createCharacter } from "./helpers";
 
-const skills = [] as Skill[];
-const you = new Character(
-  'Jack Sparrow', 
-  new DiceRoll(10,1).roll().total(),
-  new DiceRoll(10,1).roll().total(),
-  skills, 
-  new DiceRoll(10,2).roll().total(),
-);
+const character = createCharacter('Jack Sparrow');
 
-console.log(you);
+console.log(character);
+console.log(character.roll());
+console.log(character.roll());
+console.log(character.getDiceLogs());

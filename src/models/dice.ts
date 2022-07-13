@@ -1,24 +1,35 @@
-export class DiceRoll {
-  sides: number;
-  count: number;
+import { Log } from "./log";
+
+export class Dice {
+  #sides = 6;
+  rollLog = new Log();
   rolls: number[];
 
-  constructor(sides: number, count: number) {
-    this.sides = sides;
-    this.count = count;
+  constructor() {
     this.rolls = [];
-
-    return this;
   }
 
-  roll() {
-    for(let i = 0; i < this.count; i++) {
-      this.rolls.push(Math.floor(Math.random() * this.sides) + 1);
+  roll(count: number): Dice {
+    this.rolls = [];
+    for(let i = 0; i < count; i++) {
+      this.rolls.push(Math.floor(Math.random() * this.#sides) + 1);
     }
+
+    this.rollLog.add(this.rolls);
+
     return this;
   }
 
-  total() {
-    return this.rolls.reduce((total, roll) => total +=  roll, 0);
+  wins(): number {
+    let count = 0;
+    for(let i in this.rolls) {
+      const roll = this.rolls[i];
+      if(roll >= 3) count++;
+    }
+    return count;
+  }
+
+  total(): number {
+    return this.rolls.reduce((total, roll) => total += roll, 0);
   }
 }
