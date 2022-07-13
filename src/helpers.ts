@@ -1,4 +1,4 @@
-import { Character } from "./models/character";
+import { Character } from "./models/player";
 import { Dice } from "./models/dice";
 
 export const CL_BASE = 3;

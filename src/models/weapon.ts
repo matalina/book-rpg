@@ -13,8 +13,8 @@ export class Weapon extends Item {
     this.modifier = modifier;
   }
 
-  damage(over = 0) {
-    const hit = this.#dice.roll(this.count).total() + this.modifier + over;
+  damage(mod = 0) {
+    return this.#dice.roll(this.count).total() + this.modifier + mod;
   }
 
   getDamageLog() {
