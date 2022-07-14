@@ -33,17 +33,14 @@ describe('test weapon functionality', () => {
     expect(weapon.modifier).toBe(1);
 
     expect(weapon.damage).toBeDefined();
-    expect(weapon.getDamageLog).toBeDefined();
-
-    expect(weapon).not.toHaveProperty('#dice');
-    expect(Dice).toHaveBeenCalledTimes(1);
   });
 
   it('should calculate damage correctly', () => {
-    expect(Dice).not.toHaveBeenCalledTimes(1);
     let weapon = new Weapon('test','details',1, 0);
-    expect(Dice).toHaveBeenCalledTimes(1);
     let damage = weapon.damage(0);
+    
+    expect(Dice).toHaveBeenCalledTimes(1);
+
     expect(damage).toBeGreaterThanOrEqual(1);
     expect(damage).toBeLessThanOrEqual(6);
     expect(damage).toBe(1);
