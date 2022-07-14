@@ -20,9 +20,9 @@ Hit Points = 10 + 2d6 roll
 
 ### Weapon Mastery Skills
 
-* [Double edged blades][1]
-* [Single edged blades][1]
-* [Edgeles blades][1]
+* [Double edged blades][1] (longsword, claymore, broadsword daggers) 
+* [Single edged blades][1] (katana, falchion, cutlass, scimitar)
+* [Edgeles blades][1] (rapier)
 * Throwing weapons (daggers, knives)
 * Bludgeoning Weapons (maces, quarter staff)
 * Ranged weapons (bows, cross bow, sling)
