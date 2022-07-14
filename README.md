@@ -7,6 +7,8 @@ Roll 4d6 - choose 1 value for challenge level, and 2 for hit points, discard the
 Challenge level = 3 + 1d6 roll
 Hit Points = 10 + 2d6 roll
 
+Choose 5 skills
+
 ## Available Skills
 
 * Athletic: swimming, climbing, acrobatics
@@ -15,7 +17,7 @@ Hit Points = 10 + 2d6 roll
 * Survival: good at finding shelter, can always find food and water
 * Scholarly: have a vast plethora of knowledge to pull information from
 * Stealthy: sneaking around, slight of hand
-* Weapon Mastery: mastery with a chosen weapon type(see Weapon Skills)
+* Weapon Mastery: mastery with a chosen weapon type (see Weapon Skills)
 * Cantrip Mastery: with this skill you can cast 3 cantrips a day (see Cantrip Spells)
 
 ### Weapon Mastery Skills
