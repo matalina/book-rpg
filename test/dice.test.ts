@@ -23,10 +23,10 @@ describe('test dice functionality', () => {
   it('should calculate # of wins correctly', () => {  
     const dice = new Dice();
     let roll = dice.roll(1).rolls;
-    let wins = (roll.filter((d) => d >= 3)).length;
+    let wins = (roll.filter((d) => d > 3)).length;
     expect(dice.wins()).toBe(wins);
     roll = dice.roll(3).rolls;
-    wins = (roll.filter((d) => d >= 3)).length;
+    wins = (roll.filter((d) => d > 3)).length;
     expect(dice.wins()).toBe(wins);
   });
 
@@ -47,4 +47,42 @@ describe('test dice functionality', () => {
       expect(dice.total() >= 1 && dice.total() <= 6).toBe(true);
     }
   });
+
+  it('should calculate losses correctly', () => {
+    const dice = new Dice();
+    let roll = dice.roll(1).rolls;
+    let losses = (roll.filter((d) => d < 4)).length;
+    expect(dice.losses()).toBe(losses);
+    roll = dice.roll(3).rolls;
+    losses = (roll.filter((d) => d < 4)).length;
+    expect(dice.losses()).toBe(losses);
+  });
+
+  it('should return true if is epic win', () => {
+    const dice = new Dice();
+    dice.rolls = [ 6, 6, 6];
+    const check = dice.isEpicWin();
+    expect(check).toBe(true);
+  });
+
+  it('should return true if is epic fail', () => {
+    const dice = new Dice();
+    dice.rolls = [ 1, 1, 1];
+    const check = dice.isEpicFail();
+    expect(check).toBe(true);
+  });
+
+  it('should return false if is epic win', () => {
+    const dice = new Dice();
+    dice.rolls = [ 6, 1, 6];
+    const check = dice.isEpicWin();
+    expect(check).toBe(false);
+  })
+
+  it('should return false if is epic fail', () => {
+    const dice = new Dice();
+    dice.rolls = [ 1, 6, 1];
+    const check = dice.isEpicFail();
+    expect(check).toBe(false);
+  })
 });

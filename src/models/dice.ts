@@ -24,12 +24,29 @@ export class Dice {
     let count = 0;
     for(let i in this.rolls) {
       const roll = this.rolls[i];
-      if(roll >= 3) count++;
+      if(roll > 3) count++;
     }
     return count;
   }
 
   total(): number {
     return this.rolls.reduce((total, roll) => total += roll, 0);
+  }
+
+  losses(): number {
+    let count = 0;
+    for(let i in this.rolls) {
+      const roll = this.rolls[i];
+      if(roll < 4) count++;
+    }
+    return count;
+  }
+
+  isEpicWin(): boolean {
+    return this.wins() === this.rolls.length;
+  }
+
+  isEpicFail(): boolean {
+    return this.losses() === this.rolls.length;
   }
 }

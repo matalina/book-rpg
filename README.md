@@ -24,7 +24,7 @@ Choose 5 skills
 
 * [Double edged blades][1] (longsword, claymore, broadsword daggers) 
 * [Single edged blades][1] (katana, falchion, cutlass, scimitar)
-* [Edgeles blades][1] (rapier)
+* [Edgeless blades][1] (rapier)
 * Throwing weapons (daggers, knives)
 * Bludgeoning Weapons (maces, quarter staff)
 * Ranged weapons (bows, cross bow, sling)

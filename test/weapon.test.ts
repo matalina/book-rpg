@@ -21,22 +21,24 @@ jest.mock('../src/models/dice', () => {
 });
 
 describe('test weapon functionality', () => {
+  let weapon: Weapon;
   beforeEach(() => {
     jest.clearAllMocks();
+    weapon = new Weapon('test','details',1,1,'Single Edge Bladed Weapon');
   });
 
   it('should create a weapon with the correct properties and methods', () => {
-    const weapon = new Weapon('test','details',1,1);
     expect(weapon.name).toBe('test');
     expect(weapon.details).toBe('details');
     expect(weapon.count).toBe(1);
     expect(weapon.modifier).toBe(1);
+    expect(weapon.type).toBe('Single Edge Bladed Weapon');
 
     expect(weapon.damage).toBeDefined();
   });
 
   it('should calculate damage correctly', () => {
-    let weapon = new Weapon('test','details',1, 0);
+    let weapon = new Weapon('test','details',1, 0, 'Single Edge Bladed Weapon');
     let damage = weapon.damage(0);
     
     expect(Dice).toHaveBeenCalledTimes(1);
@@ -45,31 +47,31 @@ describe('test weapon functionality', () => {
     expect(damage).toBeLessThanOrEqual(6);
     expect(damage).toBe(1);
 
-    weapon = new Weapon('test','details',1, 1);
+    weapon = new Weapon('test','details',1, 1, 'Single Edge Bladed Weapon');
     damage = weapon.damage(0);
     expect(damage).toBeGreaterThanOrEqual(2);
     expect(damage).toBeLessThanOrEqual(7);
     expect(damage).toBe(2);
 
-    weapon = new Weapon('test','details',1, 1);
+    weapon = new Weapon('test','details',1, 1, 'Single Edge Bladed Weapon');
     damage = weapon.damage(1);
     expect(damage).toBeGreaterThanOrEqual(3);
     expect(damage).toBeLessThanOrEqual(8);
     expect(damage).toBe(3);
 
-    weapon = new Weapon('test','details',2, 0);
+    weapon = new Weapon('test','details',2, 0, 'Single Edge Bladed Weapon');
     damage = weapon.damage(0);
     expect(damage).toBeGreaterThanOrEqual(2);
     expect(damage).toBeLessThanOrEqual(12);
     expect(damage).toBe(2);
 
-    weapon = new Weapon('test','details',1,-1);
+    weapon = new Weapon('test','details',1,-1, 'Single Edge Bladed Weapon');
     damage = weapon.damage(0);
     expect(damage).toBeGreaterThanOrEqual(0);
     expect(damage).toBeLessThanOrEqual(5);
     expect(damage).toBe(0);
 
-    weapon = new Weapon('test','details',1,-2);
+    weapon = new Weapon('test','details',1,-2, 'Single Edge Bladed Weapon');
     damage = weapon.damage(0);
     expect(damage).toBeGreaterThanOrEqual(0);
     expect(damage).toBeLessThanOrEqual(5);

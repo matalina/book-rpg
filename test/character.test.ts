@@ -6,5 +6,5 @@ describe('test character functionality', () => {
 
     expect(character.name).toBe('name');
     expect(character.details).toBe('details');
-  })
+  });
 })
