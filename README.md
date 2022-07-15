@@ -1,6 +1,7 @@
 # To Do List
 
 - [ ] Hero/Villain Scale
+- [ ] What a character things of you (rep system)
 - [ ] Combat Challenge
 - [ ] Cantrip Spells
 - [ ] Page Creation
