@@ -1,5 +1,6 @@
 # To Do List
 
+- [ ] Hero/Villain Scale
 - [ ] Combat Challenge
 - [ ] Cantrip Spells
 - [ ] Page Creation
@@ -8,6 +9,7 @@
 - [ ] Continue a Story
 - [ ] Character Creation
 - [ ] Game UI
+- [ ] Create a Game UI
 
 # Character Creation
 
