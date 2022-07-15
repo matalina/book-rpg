@@ -1,3 +1,14 @@
+# To Do List
+
+- [ ] Combat Challenge
+- [ ] Cantrip Spells
+- [ ] Page Creation
+- [ ] Page Navigation
+- [ ] Story Creation/Start New Story
+- [ ] Continue a Story
+- [ ] Character Creation
+- [ ] Game UI
+
 # Character Creation
 
 Use Modified Cogent Rules
