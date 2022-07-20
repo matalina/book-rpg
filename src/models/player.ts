@@ -3,11 +3,22 @@ import { Dice } from "./dice";
 import type { Skill } from "./skill";
 import type { Weapon } from "./weapon";
 import type { WeaponSkill } from "./weapon-skill";
+import type { Action } from './action';
+import type { Item } from "./item";
 
 export class Player extends Character {
   challengeLevel: number;
   hitPoints: number;
   skills: Skill[];
+  diplomatic: number;
+  militant: number;
+  reputation: number;
+  weapon: Weapon | null;
+  armor: Item | null;
+
+  special: Item[];
+  backpack: Item[];
+  money: number;
 
   dice = new Dice();
 
@@ -16,6 +27,16 @@ export class Player extends Character {
     this.challengeLevel = cl;
     this.hitPoints = hp;
     this.skills = skills;
+
+    this.diplomatic = 0;
+    this.militant = 0;
+    this.reputation = 0;
+
+    this.weapon = null;
+    this.armor = null;
+    this.special = [];
+    this.backpack = [];
+    this.money = 0;
   }
 
   takeDamage(damage: number): Player {
@@ -53,4 +74,17 @@ export class Player extends Character {
     return this.dice.wins() >= toBeat;
   }
 
+  takeAction(action: Action) {
+    if(action.diplomatic) this.diplomatic += action.diplomatic;
+    if(action.militant) this.militant += action.militant;
+    if(action.reputation) this.reputation += action.reputation;
+  }
+
+  equip(weapon: Weapon) {
+    this.weapon = weapon;
+  }
+
+  unequip() {
+    this.weapon = null;
+  }
 }

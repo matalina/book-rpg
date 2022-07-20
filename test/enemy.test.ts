@@ -15,7 +15,7 @@ jest.mock('../src/models/weapon', () => {
 
 describe('test enemy functionality', () => {
   it('should have the appropriate properties and methods', () => {
-    const weapon = new Weapon('weapon','',1,0);
+    const weapon = new Weapon('weapon','',1,0, 'Single Edge Bladed Weapon');
     const enemy = new Enemy('enemy','details',3, 22, weapon);
 
     expect(enemy.name).toBe('enemy');
@@ -29,7 +29,7 @@ describe('test enemy functionality', () => {
   });
 
   it('should lower hit points when taking damage', () => {
-    const weapon = new Weapon('weapon','',1,0);
+    const weapon = new Weapon('weapon','',1,0, 'Single Edge Bladed Weapon');
     const enemy = new Enemy('enemy','details',3, 22, weapon);
 
     enemy.takeDamage(3);
@@ -39,7 +39,7 @@ describe('test enemy functionality', () => {
   });
 
   it('should call weapon damage function and return a damage value as a positive integer or zero', () => {
-    const weapon = new Weapon('weapon','',1,0);
+    const weapon = new Weapon('weapon','',1,0,'Single Edge Bladed Weapon');
     const enemy = new Enemy('enemy','details',3, 22, weapon);
 
     let damage = enemy.damage(0);

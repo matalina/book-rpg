@@ -3,6 +3,8 @@ import { Player } from '../src/models/player';
 import { Skill } from '../src/models/skill';
 import { Weapon } from '../src/models/weapon';
 import { WeaponSkill } from '../src/models/weapon-skill';
+import { Action } from '../src/models/action';
+import type { Item } from '../src/models/item';
 
 describe('test player functionality', () => {
   let player: Player;
@@ -25,11 +27,22 @@ describe('test player functionality', () => {
     expect(player.hitPoints).toBe(22);
     expect(player.dice).toStrictEqual(new Dice());
     expect(player.skills).toStrictEqual([skill]);
+    expect(player.diplomatic).toBe(0);
+    expect(player.militant).toBe(0);
+    expect(player.reputation).toBe(0);
+    expect(player.weapon).toBe(null);
+    expect(player.armor).toBe(null);
+    expect(player.special).toStrictEqual([] as Item[]);
+    expect(player.backpack).toStrictEqual([] as Item[]);
+    expect(player.money).toBe(0);
 
     expect(player.takeDamage).toBeDefined;
     expect(player.hasSkill).toBeDefined;
     expect(player.hasWeaponSkill).toBeDefined;
     expect(player.roll).toBeDefined;
+    expect(player.takeAction).toBeDefined;
+    expect(player.equip).toBeDefined();
+    expect(player.unequip).toBeDefined();
   });
 
   it('should loser hit points when damage is taken', () => {
@@ -81,5 +94,46 @@ describe('test player functionality', () => {
     const check = player.challenge(twoDice, 3);
     expect(check).toBe(false);
   });
+
+ it('should increase dipolmatic when take action is diplomatic', () =>  {
+  const action = new Action('action',0,1,0);
+  player.takeAction(action);
+  expect(player.diplomatic).toBe(1);
+  player.takeAction(action);
+  expect(player.diplomatic).toBe(2);
+ });
+
+ it('should increase dipolmatic when take action is militant', () =>  {
+  const action = new Action('action',0,0,1);
+  player.takeAction(action);
+  expect(player.militant).toBe(1);
+  player.takeAction(action);
+  expect(player.militant).toBe(2);
+ });
+
+ it('should change reputation when take action has reputation', () =>  {
+  let action = new Action('action',1,0,0);
+  player.takeAction(action);
+  expect(player.reputation).toBe(1);
+  player.takeAction(action);
+  expect(player.reputation).toBe(2);
+  action = new Action('action',-2,0,0);
+  player.takeAction(action);
+  expect(player.reputation).toBe(0);
+ });
+
+ it('should equip a weapon', () => {
+  const weapon = new Weapon('weapon','details',1,0,'Double Edge Bladed Weapon');
+  player.equip(weapon);
+  expect(player.weapon).toStrictEqual(weapon);
+ });
+
+ it('should unequip a weapon', () => {
+  const weapon = new Weapon('weapon','details',1,0,'Double Edge Bladed Weapon');
+  player.equip(weapon);
+  expect(player.weapon).toStrictEqual(weapon);
+  player.unequip();
+  expect(player.weapon).toBe(null);
+ });
 
 });
